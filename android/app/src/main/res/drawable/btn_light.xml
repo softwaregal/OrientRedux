@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <padding android:bottom="2dp" android:left="0dp" android:right="2dp"
+                android:top="0dp"/>
+            <solid android:color="#00CCCCCC"/>
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:bottom="2dp" android:left="0dp" android:right="2dp"
+                android:top="0dp"/>
+            <solid android:color="#10CCCCCC"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:bottom="2dp" android:left="0dp" android:right="2dp"
+                android:top="0dp"/>
+            <solid android:color="#20CCCCCC"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:bottom="2dp" android:left="0dp" android:right="2dp"
+                android:top="0dp"/>
+            <solid android:color="@color/black"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp"/>
+            <solid android:color="@color/black"/>
+        </shape>
+    </item>
+
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="@color/colorPrimaryDark"/>
+            <corners android:radius="0dp"/>
+            <padding android:top="@dimen/less_smallest" android:bottom="@dimen/less_smallest" android:left="@dimen/less_smallest"
+                android:right="@dimen/less_smallest"></padding>
+        </shape>
+    </item>
+</layer-list>
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <item >
+            <shape
+                android:shape="rectangle">
+                <solid android:color="@android:color/black" />
+
+            </shape>
+        </item>
+        <item android:right="5dp" android:left="5dp" android:bottom="5dp">
+            <shape
+                android:shape="rectangle">
+                <solid android:color="@android:color/white"/>
+
+            </shape>
+        </item>
+    </layer-list>-->

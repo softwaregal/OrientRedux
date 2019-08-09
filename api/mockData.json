@@ -1,0 +1,244 @@
+{
+  "login": {
+    "ok": {
+      "RetailerName": "Demo Retailer",
+      "RegisteredMobileNo": "9654716400",
+      "MemberType": "R",
+      "NameoftheFirm": "Demo firm name",
+      "ProductCategory": "B1",
+      "ProfilePicture": "",
+      "BarCode": "NO",
+      "QRCode": "Yes",
+      "IsTNCAccept": "Y"
+    },
+    "fail": {
+      "ErrorCode": -1002,
+      "ErrorMessage": "INVALID MOBILE NUMBER OR PASSWORD"
+    }
+  },
+  "notification" : {
+    "ErrorCode": 0,
+    "ErrorMessage": "",
+    "Response": {
+      "NotificationDetails": [{
+        "NotificationContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "NotificationID": 1,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "NotificationID": 2,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "NotificationID": 3,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+        "NotificationID": 4,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "NotificationID": 3,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "NotificationID": 3,
+        "Responded": "NO"
+      },
+      {
+        "NotificationContent": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "NotificationID": 3,
+        "Responded": "NO"
+      }]
+    }
+  },
+  "gifting": {
+    "schemes": {
+      "Response": {
+        "PointGiftData": [
+          {
+            "SchemeId": "10",
+            "SchemeName": "camp01",
+            "TotalCount": "1",
+            "PendingCount": "0",
+            "ApprovedCount": "0",
+            "RejectedCount": "0",
+            "DeliveredCount": "0"
+          },
+          {
+            "SchemeId": "11",
+            "SchemeName": "camp02",
+            "TotalCount": "1",
+            "PendingCount": "0",
+            "ApprovedCount": "0",
+            "RejectedCount": "0",
+            "DeliveredCount": "0"
+          },
+          {
+            "SchemeId": "12",
+            "SchemeName": "test09",
+            "TotalCount": "1",
+            "PendingCount": "0",
+            "ApprovedCount": "1",
+            "RejectedCount": "0",
+            "DeliveredCount": "0"
+          }
+        ]
+      }
+    },
+    "giftingDetails": {
+      "Response": {
+        "Detail": [
+          {
+            "GiftingId": "12",
+            "SchemeId": "10",
+            "SchemeName": "camp01",
+            "RetailerMobileNo": "9670814236",
+            "RetailerName": "retailer_test",
+            "RetailerFirmName": "retailer_test",
+            "RetailerFirmAddress": "XYZ",
+            "RetailerFirmStateName": "Uttar Pradesh",
+            "RetailerFirmCityName": "Noida",
+            "ProductName": "product01",
+            "ProductImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "P",
+            "ApprovalDate": "",
+            "RejectionDate": "",
+            "RejectionRemarks": "",
+            "DeliveryDate": "",
+            "Remarks": "",
+            "Rating": "0",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          },
+          {
+            "GiftingId": "13",
+            "SchemeId": "11",
+            "SchemeName": "camp02",
+            "RetailerMobileNo": "9670814236",
+            "RetailerName": "retailer_test",
+            "RetailerFirmName": "retailer_test",
+            "RetailerFirmAddress": "XYZ",
+            "RetailerFirmStateName": "Uttar Pradesh",
+            "RetailerFirmCityName": "Noida",
+            "ProductName": "product01",
+            "ProductImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "D",
+            "ApprovalDate": "31-Jan-2019",
+            "RejectionDate": "31-Jan-2019",
+            "RejectionRemarks": "",
+            "DeliveryDate": "31-Jan-2019",
+            "Remarks": "Average",
+            "Rating": "3.5",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          },
+          {
+            "GiftingId": "14",
+            "SchemeId": "12",
+            "SchemeName": "test09",
+            "RetailerMobileNo": "9670814236",
+            "RetailerName": "retailer_test",
+            "RetailerFirmName": "retailer_test",
+            "RetailerFirmAddress": "XYZ",
+            "RetailerFirmStateName": "Uttar Pradesh",
+            "RetailerFirmCityName": "Noida",
+            "ProductName": "product01",
+            "ProductImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "A",
+            "ApprovalDate": "31-Jan-2019",
+            "RejectionDate": "31-Jan-2019",
+            "RejectionRemarks": "",
+            "DeliveryDate": "31-Jan-2019",
+            "Remarks": "",
+            "Rating": "0",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          },
+          {
+            "GiftingId": "15",
+            "SchemeId": "12",
+            "SchemeName": "test09",
+            "RetailerMobileNo": "9670814236",
+            "RetailerName": "retailer_test",
+            "RetailerFirmName": "retailer_test",
+            "RetailerFirmAddress": "XYZ",
+            "RetailerFirmStateName": "Uttar Pradesh",
+            "RetailerFirmCityName": "Noida",
+            "ProductName": "product01",
+            "ProductImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "R",
+            "ApprovalDate": "31-Jan-2019",
+            "RejectionDate": "31-Jan-2019",
+            "RejectionRemarks": "Reward something else",
+            "DeliveryDate": "31-Jan-2019",
+            "Remarks": "",
+            "Rating": "0",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          }
+        ]
+      }
+    },
+    "retailerGiftingDetails": {
+      "Response": {
+        "Detail": [
+          {
+            "GiftingId": "12",
+            "SchemeId": "10",
+            "SchemeName": "camp01",
+            "DistributorName": "distributor01",
+            "RewardName": "product01",
+            "RewardImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "Delivered",
+            "Rating": "0",
+            "Comment": "",
+            "SchemeYear": "2019",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          },
+          {
+            "GiftingId": "13",
+            "SchemeId": "11",
+            "SchemeName": "camp02",
+            "DistributorName": "distributor01",
+            "RewardName": "product01",
+            "RewardImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "Delivered",
+            "Rating": "5",
+            "Comment": "Average",
+            "SchemeYear": "2019",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          },
+          {
+            "GiftingId": "14",
+            "SchemeId": "12",
+            "SchemeName": "test09",
+            "DistributorName": "distributor01",
+            "RewardName": "product01",
+            "RewardImageURL": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "Status": "Pending",
+            "Rating": "0",
+            "Comment": "",
+            "SchemeYear": "2019",
+            "DigitalSignatureimage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "InvoiceImage": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg",
+            "RetailerPhoto": "http://orientdemo.netcarrots.in/Admin/ProductImages/281232e5-42bb-40f3-a7e5-ed5f78732503image-3.jpg"
+          }
+        ]
+      }
+    }
+  }
+}

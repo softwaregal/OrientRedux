@@ -1,0 +1,6 @@
+{
+  "baseURL": "https://orientconnect.in/API/AllServices.svc",
+  "requestTimeout": 120000,
+  "urlLiveTest": "https://orientconnect.in/API/AllServices.svc",
+  "urlLiveDemo": "http://orientdemo.netcarrots.in/API/AllServices.svc",
+}

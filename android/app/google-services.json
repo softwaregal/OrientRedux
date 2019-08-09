@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "899900066089",
+    "firebase_url": "https://orient-test-e7302.firebaseio.com",
+    "project_id": "orient-test-e7302",
+    "storage_bucket": "orient-test-e7302.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899900066089:android:181213f9361bcc81",
+        "android_client_info": {
+          "package_name": "com.orientconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899900066089-fh95u7cgk7m3c5ejop8u3qil3mg8uc8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDndjsA75l0vWxaHmCJXsCZL736ig06tGs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

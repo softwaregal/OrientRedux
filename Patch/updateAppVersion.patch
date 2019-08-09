@@ -1,0 +1,467 @@
+Index: actions/helpActions.js
+===================================================================
+--- actions/helpActions.js	(revision 244)
++++ actions/helpActions.js	(working copy)
+@@ -14,6 +14,7 @@
+   aboutUsApi,
+   fetchStateCityMappingApi,
+   fetchBUCategoryApi,
++  fetchAppVersionApi,
+ } from '../api/help';
+ import { showMessage } from './MessageActions';
+ 
+@@ -22,6 +23,7 @@
+   FETCH_ABOUT_US: 'FETCH_ABOUT_US',
+   FETCH_STATE_CITY_MAPPING: 'FETCH_STATE_CITY_MAPPING',
+   FETCH_BU_CATEGORIES: 'FETCH_BU_CATEGORIES',
++  FETCH_APP_VERSION: 'FETCH_APP_VERSION',
+   ADD_COMPLAIN: 'ADD_COMPLAIN',
+ };
+ 
+@@ -99,3 +101,16 @@
+     }
+   };
+ }
++
++
++export const fetchAppVersion = () => {
++  return async function (dispatch) {
++    try {
++      dispatch(startAction(HelpActionTypes.FETCH_APP_VERSION));
++      const response = await fetchAppVersionApi();
++      dispatch(completeActionWithSuccess(HelpActionTypes.FETCH_APP_VERSION, response));
++    } catch (error) {
++      dispatch(completeActionWithError(HelpActionTypes.FETCH_APP_VERSION, error));
++    }
++  };
++}
+Index: android/app/build.gradle
+===================================================================
+--- android/app/build.gradle	(revision 244)
++++ android/app/build.gradle	(working copy)
+@@ -137,6 +137,7 @@
+ }
+ 
+ dependencies {
++    compile project(':react-native-device-info')
+     compile project(':react-native-geolocation-service')
+     compile project(':react-native-signature-capture')
+     compile project(':react-native-snackbar')
+Index: android/app/src/main/java/com/orientconnect/MainApplication.java
+===================================================================
+--- android/app/src/main/java/com/orientconnect/MainApplication.java	(revision 244)
++++ android/app/src/main/java/com/orientconnect/MainApplication.java	(working copy)
+@@ -3,6 +3,7 @@
+ import android.app.Application;
+ 
+ import com.facebook.react.ReactApplication;
++import com.learnium.RNDeviceInfo.RNDeviceInfo;
+ import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+ import com.rssignaturecapture.RSSignatureCapturePackage;
+ import com.azendoo.reactnativesnackbar.SnackbarPackage;
+@@ -32,6 +33,7 @@
+     protected List<ReactPackage> getPackages() {
+       return Arrays.<ReactPackage>asList(
+           new MainReactPackage(),
++            new RNDeviceInfo(),
+             new RNFusedLocationPackage(),
+             new RSSignatureCapturePackage(),
+             new SnackbarPackage(),
+Index: android/settings.gradle
+===================================================================
+--- android/settings.gradle	(revision 244)
++++ android/settings.gradle	(working copy)
+@@ -1,4 +1,6 @@
+ rootProject.name = 'OrientConnect'
++include ':react-native-device-info'
++project(':react-native-device-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info/android')
+ include ':react-native-geolocation-service'
+ project(':react-native-geolocation-service').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-geolocation-service/android')
+ include ':react-native-signature-capture'
+Index: api/help.js
+===================================================================
+--- api/help.js	(revision 244)
++++ api/help.js	(working copy)
+@@ -31,3 +31,7 @@
+   return await apiClient.post('/GetBuCategory', {});
+ }
+ 
++
++export const fetchAppVersionApi = async () => {
++  return await apiClient.post('/GetAPPVersionAPI', {});
++}
+Index: ios/OrientConnect/Info.plist
+===================================================================
+--- ios/OrientConnect/Info.plist	(revision 244)
++++ ios/OrientConnect/Info.plist	(working copy)
+@@ -40,7 +40,7 @@
+ 	<key>NSCameraUsageDescription</key>
+ 	<string>For taking a photo.</string>
+ 	<key>NSLocationWhenInUseUsageDescription</key>
+-        <string>Allow Orient connect to fetch location data</string>
++	<string>Allow Orient connect to fetch location data</string>
+ 	<key>NSPhotoLibraryAddUsageDescription</key>
+ 	<string>For saving a photo.</string>
+ 	<key>NSPhotoLibraryUsageDescription</key>
+Index: ios/OrientConnect.xcodeproj/project.pbxproj
+===================================================================
+--- ios/OrientConnect.xcodeproj/project.pbxproj	(revision 244)
++++ ios/OrientConnect.xcodeproj/project.pbxproj	(working copy)
+@@ -70,6 +70,8 @@
+ 		FCBC7BB47B1C42949BE37605 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3507C692E1AE4A0581148631 /* Foundation.ttf */; };
+ 		930A8C4A33E64F089FFB13ED /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092DB34A55A4A359A26B83B /* libBVLinearGradient.a */; };
+ 		69B9376BFB21460A9BA35839 /* libRSSignatureCapture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB095E73E45D47FEA8B34D89 /* libRSSignatureCapture.a */; };
++		5B95C6CB363D444FAB3995D3 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F129CB10984F04BE9CC115 /* libRNDeviceInfo.a */; };
++		643F1CA4F76A45C190A19403 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35699F4C17F44808B702CE02 /* libRNDeviceInfo-tvOS.a */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -490,6 +492,9 @@
+ 		2092DB34A55A4A359A26B83B /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+ 		2B60C1A5E99C4EA2B70D7E9B /* RSSignatureCapture.xcodeproj */ = {isa = PBXFileReference; name = "RSSignatureCapture.xcodeproj"; path = "../node_modules/react-native-signature-capture/ios/RSSignatureCapture.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+ 		BB095E73E45D47FEA8B34D89 /* libRSSignatureCapture.a */ = {isa = PBXFileReference; name = "libRSSignatureCapture.a"; path = "libRSSignatureCapture.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
++		135E1EE3B2FD4D6D90A73EB2 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
++		C3F129CB10984F04BE9CC115 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
++		35699F4C17F44808B702CE02 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo-tvOS.a"; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFrameworksBuildPhase section */
+@@ -528,6 +533,7 @@
+ 				1BCA906AAC6D400AAFBBA78D /* libRNSnackbar.a in Frameworks */,
+ 				930A8C4A33E64F089FFB13ED /* libBVLinearGradient.a in Frameworks */,
+ 				69B9376BFB21460A9BA35839 /* libRSSignatureCapture.a in Frameworks */,
++				5B95C6CB363D444FAB3995D3 /* libRNDeviceInfo.a in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -544,6 +550,7 @@
+ 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
+ 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
+ 				CC75191F0C524AF399BF5988 /* libRNVectorIcons-tvOS.a in Frameworks */,
++				643F1CA4F76A45C190A19403 /* libRNDeviceInfo-tvOS.a in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -727,6 +734,7 @@
+ 				E96E7A2EA83B4EA4BA87B95B /* RNSnackbar.xcodeproj */,
+ 				4CFD4CD8E0794A7B89435967 /* BVLinearGradient.xcodeproj */,
+ 				2B60C1A5E99C4EA2B70D7E9B /* RSSignatureCapture.xcodeproj */,
++				135E1EE3B2FD4D6D90A73EB2 /* RNDeviceInfo.xcodeproj */,
+ 			);
+ 			name = Libraries;
+ 			sourceTree = "<group>";
+@@ -1618,6 +1626,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = OrientConnectTests/Info.plist;
+ 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+@@ -1635,6 +1644,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+@@ -1665,6 +1676,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = OrientConnectTests/Info.plist;
+ 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+@@ -1682,6 +1694,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+@@ -1715,6 +1729,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = OrientConnect/Info.plist;
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+@@ -1751,6 +1766,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = OrientConnect/Info.plist;
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+@@ -1792,6 +1808,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = "OrientConnect-tvOS/Info.plist";
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+@@ -1808,6 +1825,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+@@ -1847,6 +1866,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = "OrientConnect-tvOS/Info.plist";
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+@@ -1863,6 +1883,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+@@ -1901,6 +1923,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = "OrientConnect-tvOSTests/Info.plist";
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+@@ -1917,6 +1940,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+@@ -1955,6 +1980,7 @@
+ 					"$(SRCROOT)/../node_modules/react-native-snackbar/ios",
+ 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+ 					"$(SRCROOT)/../node_modules/react-native-signature-capture/ios/**",
++					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+ 				);
+ 				INFOPLIST_FILE = "OrientConnect-tvOSTests/Info.plist";
+ 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+@@ -1971,6 +1997,8 @@
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
++					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+ 				);
+ 				OTHER_LDFLAGS = (
+ 					"-ObjC",
+Index: package.json
+===================================================================
+--- package.json	(revision 244)
++++ package.json	(working copy)
+@@ -15,6 +15,7 @@
+     "react-native-camera": "^1.8.0",
+     "react-native-dash": "0.0.9",
+     "react-native-datepicker": "^1.7.2",
++    "react-native-device-info": "^0.26.1",
+     "react-native-dialog": "^5.5.0",
+     "react-native-geolocation-service": "^2.0.0",
+     "react-native-gesture-handler": "^1.0.12",
+Index: screens/SplashScreen.js
+===================================================================
+--- screens/SplashScreen.js	(revision 244)
++++ screens/SplashScreen.js	(working copy)
+@@ -7,16 +7,25 @@
+ 
+ import React, {Component}  from 'react'
+ import PropTypes from 'prop-types'
+-import { View, StyleSheet, Text, Image } from 'react-native';
++import {StyleSheet, Text, View, Image, PixelRatio, FlatList, TouchableHighlight, Platform, Linking  } from 'react-native';
+ import { connect } from 'react-redux';
+-
++import DeviceInfo from 'react-native-device-info';
++import PrimaryButton from '../components/PrimaryButton';
++import { Colors, Fonts, FontSize } from '../res';
++import { showErrorMessage } from '../actions/MessageActions';
++import { headingStyles, regularTextStyles } from '../res/Styles';
+ import ImageButton from '../components/ImageButton';
+ import { isUsersLoading, getUserProfile } from '../selectors/UserSelector';
++import Dialog from "react-native-dialog";
+ import { removeUser } from '../actions/UserActions';
++import { fetchAppVersion } from '../actions/helpActions';
++import { getAppVersion } from '../selectors/helpSelector';
+ 
+ import ScreenName from '../ScreenName';
+ import { isTruthy } from '../utils';
+ 
++const deviceVersion = DeviceInfo.getVersion();
++
+ class SplashScreen extends Component {
+   static propTypes = {
+   }
+@@ -24,32 +33,90 @@
+   static defaultProps = {
+   }
+ 
++
++    constructor(props) {
++     super(props);
++     this.state = {
++       promptVisible: false,
++       link:"https://play.google.com/store/apps/details?id=com.orient.orientconnect",
++       };
++     }
++
++  componentDidMount(){
++    this.props.fetchAppVersion();
++
++  }
++
++  componentDidUpdate(prevProps) {
++    if (this.props.version !== prevProps.version) {
++      if (this.props.version) {
++        if(this.props.version !== deviceVersion) {
++          this.setState({ promptVisible: true });
++        } else {
++          setTimeout(() => {
++            if (this.props.isLoading === false) {
++              if (this.props.profile && isTruthy(this.props.profile.IsTNCAccept)) {
++                this.props.navigation.navigate(ScreenName.Navigator.APP);
++              } else {
++                this.props.removeUser();
++                this.props.navigation.navigate(ScreenName.Navigator.AUTH);
++              }
++            }
++          }, 5000);
++        }
++      }
++    }
++}
++
++handleClick(link) {
++    if(Platform.OS === 'android'){
++    Linking.canOpenURL(link).then(supported => {
++        supported && Linking.openURL(link);
++    }, (err) => console.log(err));
++}
++else{
++  Linking.canOpenURL("itms://play.google.com/store/apps/details?id=com.orient.orientconnect").then(supported => {
++      supported && Linking.openURL("itms://play.google.com/store/apps/details?id=com.orient.orientconnect");
++  }, (err) => console.log(err));
++}
++}
++
+   render() {
+     return (
++      <View style={{ flex: 1}}>
++      <Dialog.Container visible={this.state.promptVisible}>
++         <Dialog.Title>Update Required</Dialog.Title>
++         <Dialog.Description>
++      New Update of the application is available. You can only proceed if you update the app. Please press go to update the app.
++     </Dialog.Description>
++        <Dialog.Button
++          label="Cancel"
++          color={Colors.PRIMARY_TEXT}
++          onPress={() => this.setState({ promptVisible: false})}
++        />
++        <Dialog.Button
++          label="Go"
++          color={Colors.COLORPRIMARY}
++          onPress={() => {
++            this.handleClick(this.state.link)
++            this.setState({promptVisible: false })
++                        }}
++         />
++      </Dialog.Container>
+       <Image source={{uri: 'splash'}} style={{flex: 1}} />
++      </View>
+       )
+   }
+ 
+-  componentDidMount(){
+-    setTimeout(() => {
+-      if (this.props.isLoading === false) {
+-        if (this.props.profile && isTruthy(this.props.profile.IsTNCAccept)) {
+-          this.props.navigation.navigate(ScreenName.Navigator.APP);
+-        } else {
+-          this.props.removeUser();
+-          this.props.navigation.navigate(ScreenName.Navigator.AUTH);
+-        }
+-      }
+-      }, 5000);
+-  }
+ }
+ 
+ const mapStateToProps = (state) => {
+   const profile = getUserProfile(state);
+   const isLoading = isUsersLoading(state);
+-  return { profile, isLoading };
++  const version=getAppVersion(state);
++  return { profile, isLoading, version };
+ };
+ 
+-const mapDispatchToProps = { removeUser };
++const mapDispatchToProps = { removeUser,fetchAppVersion };
+ 
+ export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
+Index: selectors/helpSelector.js
+===================================================================
+--- selectors/helpSelector.js	(revision 244)
++++ selectors/helpSelector.js	(working copy)
+@@ -36,3 +36,5 @@
+     return [];
+   }
+ }
++
++export const getAppVersion = state => state.help.appversion;
+Index: stores/HelpStore.js
+===================================================================
+--- stores/HelpStore.js	(revision 244)
++++ stores/HelpStore.js	(working copy)
+@@ -8,10 +8,12 @@
+ import { HelpActionTypes } from '../actions/helpActions';
+ import { ActionStatus } from '../actions/action';
+ import { UserActionTypes } from '../actions/UserActions';
++import {Platform} from 'react-native';
+ 
+ const defaultState = {
+   contactUs: null,
+   aboutUs: null,
++  appversion: null,
+ };
+ 
+ const help = (state = defaultState, action) => {
+@@ -19,7 +21,8 @@
+     action.actionStatus === ActionStatus.COMPLETE_WITH_SUCCESS) {
+     return defaultState;
+   }
+-  if (action.actionStatus === ActionStatus.COMPLETE_WITH_ERROR) {
++  if (action.actionStatus === ActionStatus.COMPLETE_WITH_ERROR
++  || action.actionStatus === ActionStatus.IN_PROGRESS) {
+     return state;
+   }
+   switch (action.type) {
+@@ -27,6 +30,10 @@
+       return Object.assign({}, state, { contactUs: action.payload });
+     case HelpActionTypes.FETCH_ABOUT_US:
+       return Object.assign({}, state, { aboutUs: action.payload });
++    case HelpActionTypes.FETCH_APP_VERSION:
++          if(Platform.OS === 'android')return Object.assign({}, state, { appversion: action.payload.AppVersionAndroid });
++           if(Platform.OS === 'ios')return Object.assign({}, state, { appversion: action.payload.AppVersionIOS });
++           return state;
+     default:
+       return state;
+   }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<declare-styleable name="ImageTextButton">
+    <attr name="bgImage" format="reference" />
+    <attr name="srcImage" format="reference" />
+    <attr name="bgColor" format="reference" />
+    <attr name="textImage" format="string" />
+    <attr name="size" format="string" />
+    <attr name="orientation" format="integer">
+        <enum name="horizontal" value="0" />
+        <enum name="vertical" value="1" />
+    </attr>
+
+</declare-styleable>
+
+
+</resources>

@@ -1,0 +1,143 @@
+<resources>
+
+    <!--Padding margin sizes -->
+
+    <dimen name="super_extra">220dp</dimen>
+
+    <!-- 13*6 -->
+    <dimen name="super_extra_extra">78dp</dimen>
+
+    <!--12*6-->
+    <dimen name="extra_extra">72dp</dimen>
+
+    <!--8.5 *6 -->
+    <dimen name="less_highest">51dp</dimen>
+
+    <!--8 *6 -->
+    <dimen name="highest">48dp</dimen>
+
+    <!--7.5 *6 -->
+    <dimen name="less_higher">45dp</dimen>
+
+
+    <!--7 *6 -->
+    <dimen name="higher">42dp</dimen>
+
+    <!--6.5 *6 -->
+    <dimen name="less_high">39dp</dimen>
+
+
+    <!--6 *6 -->
+    <dimen name="high">36dp</dimen>
+
+    <!--5.5 *6 -->
+    <dimen name="less_normal">33dp</dimen>
+
+    <!--5 *6 -->
+    <dimen name="normal">30dp</dimen>
+
+    <!--4.5 *6 -->
+    <dimen name="less_medium">27dp</dimen>
+
+
+    <!--4 *6 -->
+    <dimen name="medium">24dp</dimen>
+
+    <!--3.5 *6 -->
+    <dimen name="less_small">21dp</dimen>
+
+
+    <!--3 *6 -->
+    <dimen name="small">18dp</dimen>
+
+    <!--2.5 *6-->
+    <dimen name="less_smaller">15dp</dimen>
+
+    <!--2 *6 -->
+    <dimen name="smaller">12dp</dimen>
+
+    <!--1.5 *6 -->
+    <dimen name="less_smallest">9dp</dimen>
+
+
+    <!--1 *6 -->
+    <dimen name="smallest">6dp</dimen>
+
+
+    <!--.5*6-->
+    <dimen name="more_smallest">3dp</dimen>
+
+
+    <!--8.5 *6 -->
+    <dimen name="less_highest_text">68sp</dimen>
+
+    <!--8 *6 -->
+    <dimen name="highest_text">64sp</dimen>
+
+    <!--7.5 *6 -->
+    <dimen name="less_higher_text">60sp</dimen>
+
+
+    <!--7 *6 -->
+    <dimen name="higher_text">56sp</dimen>
+
+    <!--6.5 *6 -->
+    <dimen name="less_high_text">52sp</dimen>
+
+
+    <!--6 *6 -->
+    <dimen name="high_text">48sp</dimen>
+
+    <!--5.5 *6 -->
+    <dimen name="less_normal_text">44sp</dimen>
+
+    <!--5 *6 -->
+    <dimen name="normal_text">40sp</dimen>
+
+    <!--4.5 *6 -->
+    <dimen name="less_medium_text">36sp</dimen>
+
+
+    <!--4 *6 -->
+    <dimen name="medium_text">32sp</dimen>
+
+    <!--3.5 *6 -->
+    <dimen name="less_small_text">28sp</dimen>
+
+
+    <!--3 *6 -->
+    <dimen name="small_text">24sp</dimen>
+
+    <!--2.5 *6-->
+    <dimen name="less_smaller_text">20sp</dimen>
+
+    <!--2 *6 -->
+    <dimen name="smaller_text">16sp</dimen>
+
+    <!--1.5 *6 -->
+    <dimen name="less_smallest_text">12sp</dimen>
+
+
+    <!--1 *6 -->
+    <dimen name="smallest_text">8sp</dimen>
+
+    <!--.5*6-->
+    <dimen name="more_smallest_text">4sp</dimen>
+
+
+    <!--Circle image size 10.5*6 -->
+    <dimen name="circle_100">63dp</dimen>
+
+    <!--Circle image size 14*6 -->
+    <dimen name="circle_msg">84dp</dimen>
+
+    <!--Circle image size 14*8 -->
+    <dimen name="circle_msg1">98dp</dimen>
+
+    <!--25*6 -->
+    <dimen name="recharge_edit_text">162dp</dimen>
+    <!--18*6 -->
+    <dimen name="image">108dp</dimen>
+
+
+</resources>

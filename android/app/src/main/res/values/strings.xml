@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">OrientConnect</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="app_crashed">Application crashed! Let team know about this crash</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="title_activity_registration_instruction">RegistrationInstructionActivity</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="blank_response">Blank response by side of server</string>
+    <string name="json_exception">Unexpected response from server</string>
+    <string name="server_1">No internet connection. Please try after some time.</string>
+    <string name="server_2">Seems like we are not able to sync with server. Please try after some time.</string>
+    <string name="server_3">Server error. Please try after some time.</string>
+    <string name="unknown_exception">Some thing went wrong. Please try in some time</string>
+    <string name="title_activity_verify_otp">VerifyOtpActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_scan_qr_code">ScanQrCode</string>
+    <string name="title_activity_status_qr_code">StatusQrCode</string>
+    <string name="title_activity_date_wise_scanned_code">DateWiseScannedCode</string>
+    <string name="title_activity_time_wise_scanned_code">TimeWiseScannedCode</string>
+    <string name="title_activity_account_statement">AccountStatement</string>
+    <string name="title_activity_submitted_qr_code">SubmittedQrCode</string>
+    <string name="title_activity_register_compaint">RegisterCompaint</string>
+    <string name="title_activity_contact_us">ContactUsActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="title_activity_set_time_slot">SetTimeSlot</string>
+</resources>
